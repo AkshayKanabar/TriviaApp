@@ -1,0 +1,15 @@
+<div class="container">
+    <mat-card *ngFor='let trivia of triviaQuestions; let qIndex=index'>
+        <mat-card-title>
+            <h2>{{qIndex+1}}. <span [innerHTML]="trivia.question | safeHtml"></span></h2>
+        </mat-card-title>
+        <mat-card-content>
+            <mat-radio-group [(ngModel)]="trivia.selected_answer" *ngFor='let option of trivia?.options'>
+                <mat-radio-button class="w-100 mb-2" [value]='option'>{{option}}</mat-radio-button>
+            </mat-radio-group>
+        </mat-card-content>
+    </mat-card>
+
+    <button mat-raised-button color="accent" (click)="submitTrivia()">Submit Trivia</button>
+    <button mat-raised-button color="warn" (click)="resetTrivia()">Reset Trivia</button>
+</div>

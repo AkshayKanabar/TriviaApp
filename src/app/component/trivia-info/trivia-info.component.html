@@ -1,0 +1,42 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="triviaFormGroup" (ngSubmit)="onFormSubmit(triviaFormGroup.value)">
+                <div class="form-container">
+                    <mat-form-field class="full-width-field">
+                        <mat-select formControlName="category" placeholder="Select Category">
+                            <mat-option value="0">-- Any Category --</mat-option>
+                            <mat-option *ngFor="let category of categories;" value="{{category.id}}">{{category.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="full-width-field">
+                        <mat-select formControlName="difficulty" placeholder="Select Difficulty">
+                            <mat-option value="">-- Any Difficulty --</mat-option>
+                            <mat-option value="easy">Easy</mat-option>
+                            <mat-option value="medium">Medium</mat-option>
+                            <mat-option value="hard">Hard</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="full-width-field">
+                        <input formControlName="amount" type="number" matInput placeholder="Number of Questions:">
+                    </mat-form-field>
+                    <mat-error *ngIf="triviaFormControl['amount'].errors?.['required'] && submitted">
+                        Number of Questions is required</mat-error>
+                    <mat-form-field class="full-width-field">
+                        <mat-select formControlName="type" placeholder="Select Type">
+                            <mat-option value="">-- Any Type --</mat-option>
+                            <mat-option value="multiple">Multiple Choice</mat-option>
+                            <mat-option value="boolean">True / False</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="text-center">
+                        <button mat-raised-button color="accent" [disabled]="!triviaFormGroup.valid">Start
+                            Trivia</button>
+                    </div>
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
